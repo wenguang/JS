@@ -1,0 +1,54 @@
+<html>
+	<script type="text/javascript">
+
+	//http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html
+
+	// Object.create()法 
+// 　　var Cat = {
+// 　　　　name: "大毛",
+// 　　　　makeSound: function(){ alert("喵喵喵"); }
+// 　　};
+
+// 	if (!Object.create) {
+// 	  Object.create = function (o) {
+// 	     function F() {}
+// 	    F.prototype = o;
+// 	    return new F();
+// 	  };
+// 	}
+// 	var cat1 = Object.create(Cat);
+// 	alert(cat1.name); // 大毛
+// 	cat1.makeSound(); // 喵喵喵
+
+
+	// 极简主义法
+	var Animal = {
+	  createNew: function() {
+	    var animal = {};
+	    animal.sleep = function(){ alert("睡懒觉"); };
+	    return animal;
+	  }
+	};
+
+	var Cat = {
+	  sound : "喵喵喵",	//数据共享，类数据
+	  createNew: function(){
+	    var cat = Animal.createNew();	//继承
+	    cat.spec = 111;	// 私有变量
+	    cat.makeSound = function(){ alert(Cat.sound); };
+	    cat.changeSound = function(x){ Cat.sound = x; };
+	    return cat;
+	  }
+	};
+	var cat1 = Cat.createNew();
+	var cat2 = Cat.createNew();
+	cat1.makeSound(); // 喵喵喵
+	cat2.changeSound("啦啦啦");
+	cat1.makeSound(); // 啦啦啦
+
+
+	</script>
+	<body>
+
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+	<script type="text/javascript">
+
+	//http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html
+
+	var Chinese = {
+　　　　nation:'中国'
+　　};
+	var Doctor ={
+　　　　career:'医生'
+　　}
+
+	// 一、object()
+// 	function object(o) {
+// 　　　　function F() {}
+// 　　　　F.prototype = o;
+// 　　　　return new F();
+// 　　}
+
+// 	var Doctor = object(Chinese);
+// 	Doctor.career = '医生';
+// 	alert(Doctor.career);
+
+	// 二、深拷贝
+	function deepCopy(p, c) {
+	  var c = c || {};
+	  for (var i in p) {
+	    if (typeof p[i] === 'object') {
+	      c[i] = (p[i].constructor === Array) ? [] : {};
+	      deepCopy(p[i], c[i]);
+	    } else {
+	       c[i] = p[i];
+	    }
+	  }
+	  return c;
+	}
+
+	Chinese.birthPlaces = ['北京','上海','香港'];
+	var Doctor = deepCopy(Chinese);
+	Doctor.birthPlaces.push('厦门');
+	alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门
+	alert(Chinese.birthPlaces); //北京, 上海, 香港
+
+	</script>
+	<body>
+
+	</body>
+</html>

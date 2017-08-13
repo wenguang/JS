@@ -1,0 +1,33 @@
+<html>
+	<script type="text/javascript">
+
+		function CoolModule() {
+
+			var something = "cool";
+			var another = [1, 2, 3];
+
+			function doSomething() { 
+				console.log( something );
+			}
+			function doAnother() {
+				console.log( another.join( " ! " ) );
+			}
+
+			return {
+				doSomething: doSomething, 
+				doAnother: doAnother
+			}; 
+		}
+		
+		var foo = CoolModule(); 
+		foo.doSomething(); // cool
+		foo.doAnother(); // 1 ! 2 ! 3
+
+		// 《你不知道的javascript》(上卷) 5.5 闭包-模块
+
+
+	</script>
+	<body>
+
+	</body>
+</html>
